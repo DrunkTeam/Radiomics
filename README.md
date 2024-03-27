@@ -14,5 +14,5 @@ We have 200 series of t2-weighted MRI images with maskk of tumor. 50 of them hav
 
 ### Preparation of the data
 For retrieve readiomics feature we use [pyRadiomics](https://www.radiomics.io/pyradiomics.html), which works with NIFTI series. 
-Using [Slicer3D](https://www.slicer.org/) we checked series and convert .nrrd to .nifti.
+Using [Slicer3D](https://www.slicer.org/) we checked series and convert .nrrd to .nii.
 
