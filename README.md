@@ -1,5 +1,5 @@
 # Radiomics
-Detection k27m mutation in glioms in the brain
+Detection k27m mutation in glioms of the brain stem.
 
 ## Team
 - Ninel Yunusova
