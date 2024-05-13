@@ -16,3 +16,20 @@ We have 200 series of t2-weighted MRI images with maskk of tumor. 50 of them hav
 For retrieve readiomics feature we use [pyRadiomics](https://www.radiomics.io/pyradiomics.html), which works with NIFTI series. 
 Using [Slicer3D](https://www.slicer.org/) we checked series and convert .nrrd to .nii.
 
+# Install
+Python version 3.11.7
+```python -m venv venv```
+```.\venv\Scripts\activate``` for Windows or ```source .venv/bin/activate``` for linux
+
+
+```pip install simpleitk```
+```pip install numpy```
+```pip install pyradiomics```
+```pip install tabpfn```
+```pip install torcheval```
+```pip install fastapi```
+```pip install matplotlib```
+```pip install pandas```
+
+# Launch
+```python -m uvicorn main:app --reload```

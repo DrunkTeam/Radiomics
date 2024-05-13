@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <div class="all_container">
+        <div class="wrapper">
+            <button class="lang-switch" onclick="switchLanguage()">EN/RU</button>
+            <div class="header">
+                Welcome to the AML project demo website!
+            </div>
+            <div class="container">
+                <div class="select-container">
+                    <div class="file-upload">
+                        <div class="text">drag and drop a snapshot</div>
+                        <input type="file" id="file1" required
+                            onchange="checkFile(this, 'Add or transfer a snapshot', 'The picture is uploaded')">
+                    </div>
+                    <div class="file-upload">
+                        <div class="text">drag and drop a mask</div>
+                        <input type="file" id="file2" required
+                            onchange="checkFile(this, 'Add or transfer a mask', 'The mask is loaded')">
+                    </div>
+                </div>
+                <button id="playButton" disabled>Enter</button>
+            </div>
+            <div id="loading" style="display: none;">
+                <div id="progressBar">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<footer>
+    <div class="footer">
+        It is not a medical recommendation. To get accurate information, you need to consult a doctor.
+    </div>
+</footer>
+<script type="text/javascript" src="./scripts/js/script.js"></script>
+
+</html>
