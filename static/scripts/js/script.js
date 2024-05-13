@@ -32,9 +32,19 @@ playButton.addEventListener('click', () => {
         .then(data => {
           console.log(data)
           //МОДИФИЦИРОВАТЬ ФРОНТ ТУТ
+          document.getElementById('result').style.display = 'block';
+          if (data['Results'] == 1) {
+            document.getElementById('result').innerText = 'There is a 50% chance that you have a mutation';
+          } else {
+            document.getElementById('result').innerText = 'There\'s a 50% chance you don\'t have a mutation.';
+          }
+
+          document.getElementById('graph1').style.display = 'flex';
+          document.getElementById('graph2').style.display = 'flex';
+          
         })
         .catch(error => {
-          console.error('Error uploading file:', error)
+          console.error('Error backend:', error)
         })
 
         //ТУТ ПИСАТЬ НЕЛЬЗЯ

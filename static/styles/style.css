@@ -21,6 +21,11 @@ body {
     border-bottom: 1px solid #ccc;
 }
 
+#result {
+    text-align: center;
+    font-size: xx-large;
+}
+
 /* Main container styles */
 .all_container {
     width: 90%;
@@ -194,6 +199,16 @@ footer {
     margin-top: 20px;
 }
 
+.graph {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.graphimg {
+    width: 80%;
+}
+
 /* Media queries */
 @media (min-width: 1170px) {
     .all_container {
@@ -225,6 +240,10 @@ footer {
 
     .file-upload {
         width: 700px;
+    }
+
+    #result {
+        font-size: x-large;
     }
 }
 

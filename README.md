@@ -30,6 +30,9 @@ Python version 3.11.7
 ```pip install fastapi```
 ```pip install matplotlib```
 ```pip install pandas```
+```pip install scipy```
+```pip3 install torch torchvision torchaudio```
+```pip install scikit-learn==1.2.2```
 
 # Launch
 ```python -m uvicorn main:app --reload```

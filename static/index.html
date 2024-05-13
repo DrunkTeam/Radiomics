@@ -34,6 +34,57 @@
                     <div></div>
                 </div>
             </div>
+            <div id="result" style="display: none;"></div>
+            <details id="graph1" class="graph" style="display: none;">
+                <summary>Description features adaboost</summary>
+                <div class="graph">
+                    <img id="graph1Img" class="graphimg" src="images/adaboost.png" alt="График 1">
+                    <!-- <ul id="graph1List"></ul> -->
+                    
+                      
+                </div>
+                <div class="graph">
+                    <ul>
+                        <li><strong>original_shape_Flatness</strong>: Measures how flat the area of interest is by comparing the shortest and longest dimensions.</li>
+                        <li><strong>original_shape_SurfaceArea</strong>: Calculates the total outer area of the interested region.</li>
+                        <li><strong>original_firstorder_TotalEnergy</strong>: Measures the sum of all the squared values within the interested region.</li>
+                        <li><strong>original_glcm_ClusterShade</strong>: A measure indicating how distributed or dispersed the various shade levels are in the image.</li>
+                        <li><strong>original_glcm_Imc1</strong>: Indicates how related the distribution of different color shades in the image is to its 4 neighboring shades.</li>
+                        <li><strong>original_ngtdm_Coarseness</strong>: Measures how much changes in intensity occur in the local area of the image.</li>
+                        <li><strong>original_ngtdm_Strength</strong>: Provides a measure of the likelihood of having similar brightness and length patterns in the image.</li>
+                        <li><strong>original_shape_MinorAxisLength</strong>: It's the length of the shortest line that can be drawn across the area of interest.</li>
+                        <li><strong>original_firstorder_Energy</strong>: Reflects the total amount of distinct brightness levels in the image.</li>
+                        <li><strong>original_firstorder_Minimum</strong>: Gives the lowest brightness level found in the area of interest.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details id="graph2" class="graph" style="display: none;">
+                <summary>Description features tabpfn</summary>
+                <div class="graph">
+                    <img id="graph2Img" class="graphimg" src="images/tabpfn.png" alt="График 2">
+                </div>
+
+                <div class="graph">
+                    <!-- <ul id="graph1List"></ul> -->
+                    <ul>
+                        <li><strong>original_shape_MeshVolume</strong>: Calculates the total space occupied by the region of interest.</li>
+                        <li><strong>original_shape_SurfaceVolumeRatio</strong>: Measures the ratio between the surface area and the volume of the region of interest.</li>
+                        <li><strong>original_ngtdm_Coarseness</strong>: Measures how much changes in intensity occur in the local area of the image.</li>
+                        <li><strong>original_glcm_Idmn</strong>: Provides a measure of the variety in brightness levels in an image, with a higher value indicating more uniformity.</li>
+                        <li><strong>original_glrlm_GrayLevelNonUniformityNormalized</strong>: Expression of the similarity of gray levels in the image, with a higher value indicating more similarity.</li>
+                        <li><strong>original_shape_Elongation</strong>: It's a ratio that shows how much the shape of the region of interest extends from a perfect sphere.</li>
+                        <li><strong>original_glcm_MaximumProbability</strong>: Gives the most likely brightness level co-occurrence in the image.</li>
+                        <li><strong>original_glcm_MCC</strong>: Provides a measure of correlation of brightness between different regions of the image.</li>
+                        <li><strong>original_gldm_LargeDependenceHighGrayLevelEmphasis</strong>: Expresses the presence of large areas with high brightness levels.</li>
+                        <li><strong>original_gldm_DependenceNonUniformity</strong>: Gives a measure of the similarity in brightness level sequences in the image.</li>
+                        <li><strong>original_glcm_DifferenceAverage</strong>: Provides the average difference in brightness between a pixel and its neighbor across the entire image.</li>
+                        <li><strong>original_gldm_SmallDependenceHighGrayLevelEmphasis</strong>: Measures the presence of small, brighter regions in the image.</li>
+                    </ul>
+                </div>
+            </details>
+
+
         </div>
 
     </div>

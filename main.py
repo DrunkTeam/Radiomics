@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Form, File, UploadFile
 from fastapi.staticfiles import StaticFiles
-from static.scripts.python.pipeline import Pipeline
+
+# from static.scripts.python.pipeline import Pipeline
 import shutil
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -17,20 +18,20 @@ import torch.optim as optim
 import numpy as np
 from scipy.stats import mode
 
-import torch
-import torch.nn as nn
-import torch.optim as optim
+from pathlib import Path
+
+import pathlib
+temp = pathlib.PosixPath
+pathlib.PosixPath = pathlib.WindowsPath
 
 class SimpleNet(nn.Module):
     def __init__(self):
         super(SimpleNet, self).__init__()
         self.fc1 = nn.Linear(107, 32)  # Входной слой: 107 входных признаков, 64 нейрона
-        # self.fc2 = nn.Linear(64, 32)   # Скрытый слой: 64 нейрона, 32 нейрона
         self.fc3 = nn.Linear(32, 1)    # Выходной слой: 32 нейрона, 1 выход (бинарная классификация)
 
     def forward(self, x):
         x = torch.relu(self.fc1(x))   # Применяем ReLU к выходу первого слоя
-        # x = torch.relu(self.fc2(x))   # Применяем ReLU ко второму слою
         x = torch.sigmoid(self.fc3(x))  # Применяем сигмоиду к выходу третьего слоя
         return x
 
@@ -115,6 +116,11 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.post("/upload")
 async def upload_files(file1: UploadFile, file2: UploadFile):
+    # if 1:
+    #     return {"Result": 1}
+    # else:
+    #     return {"Result": 0}
+    
     # Читаем содержимое файлов
     content1 = await file1.read()
     content2 = await file2.read()
@@ -130,7 +136,10 @@ async def upload_files(file1: UploadFile, file2: UploadFile):
     path_mask = "data/ABUBAKAROVA_label.nii"
 
     classifier_TabPFN = torch.load('models/model_TabPFN.pth')
+    # classifier_TabPFN = torch.load('models/model_TabPFN.pth', map_location=lambda storage, loc: storage)
     classifier_adaboost = torch.load('models/model_Adaboost.pth')
+    net = SimpleNet()
+    net.load_state_dict(torch.load('models/model_net.pth'))
     # net = torch.load('models/model_net.pth')
 
     processor = RadiomicsProcessor(path_series, path_mask,'')
@@ -142,11 +151,12 @@ async def upload_files(file1: UploadFile, file2: UploadFile):
     input=input.iloc[:, :107]
     loader_test=torch.tensor(input.to_numpy().astype(np.float32), dtype=torch.float32)
 
-    # n_trees = 3
-    n_trees = 2
+    n_trees = 3
+    # n_trees = 2
     base_pred = np.zeros((input.shape[0], n_trees), dtype="int")
-    # classifiers = [classifier_TabPFN,classifier_adaboost, net]
-    classifiers = [classifier_TabPFN,classifier_adaboost]
+    classifiers = [classifier_TabPFN,classifier_adaboost, net]
+    # classifiers = [classifier_adaboost, net]
+    # classifiers = [classifier_TabPFN,classifier_adaboost]
 
     for i in range(n_trees):
         # obtain the predictions from each tree
@@ -156,9 +166,9 @@ async def upload_files(file1: UploadFile, file2: UploadFile):
         if classifiers[i]==classifier_adaboost:
           base_pred[:,i]= classifiers[i].predict(input)
 
-        # if classifiers[i]==net:
-        #   outputs = classifiers[i](loader_test)
-        #   base_pred[:,i]= torch.round(outputs).squeeze().tolist()
+        if classifiers[i]==net:
+          outputs = classifiers[i](loader_test)
+          base_pred[:,i]= torch.round(outputs).squeeze().tolist()
     print(base_pred)
 
     # aggregate predictions by majority voting
